@@ -1,0 +1,180 @@
+﻿@page "{Device_ID:min(1)?}/{handler?}"
+@model SmartMeterWebApp.Pages.Stackholders.EditDeviceModel
+@{
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    //Layout = "~/Pages/Stackholders/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Edit Device";
+    var pageHeader = Model.deviceInfo.Device_ID > 0 ? "Edit" : "Create";
+}
+
+<h1>Edit Device</h1>
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Edit Device</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                <div class="card">
+                                    <div class="col-md-12 col-md-offset-2">
+
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input asp-for="@Model.deviceInfo.Device_ID" value="@Model.deviceInfo.Device_ID" type="hidden" />
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Subscriber_ID" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.Subscriber_ID" value="@Model.deviceInfo.Subscriber_ID" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Subscriber_ID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.STAKEHOLDER_ID" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.STAKEHOLDER_ID" value="@Model.deviceInfo.STAKEHOLDER_ID" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.STAKEHOLDER_ID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Imei_Number" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.Imei_Number" value="@Model.deviceInfo.Imei_Number" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Imei_Number" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Device_Name" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input asp-for="@Model.deviceInfo.Device_Name" value="@Model.deviceInfo.Device_Name" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Device_Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.IOTDEviceId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input asp-for="@Model.deviceInfo.IOTDEviceId" value="@Model.deviceInfo.IOTDEviceId" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.IOTDEviceId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.TypeOfHouseStatus" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input asp-for="@Model.deviceInfo.TypeOfHouseStatus" value="@Model.deviceInfo.TypeOfHouseStatus" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.TypeOfHouseStatus" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Flag_Operation" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select asp-for="@Model.deviceInfo.Flag_Operation" value="@Model.deviceInfo.Flag_Operation" asp-items="@Model.Flag_Operations" class="form-control"></select>
+                                                @*<input asp-for="@Model.deviceInfo.Flag_Operation" class="form-control" />*@
+                                                <span asp-validation-for="@Model.deviceInfo.Flag_Operation" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Verify_Address" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select asp-for="@Model.deviceInfo.Verify_Address" value="@Model.deviceInfo.Verify_Address" asp-items="@Model.Verify_Addresses" class="form-control"></select>
+                                                @*<input asp-for="@Model.deviceInfo.Verify_Address" class="form-control" />*@
+                                                <span asp-validation-for="@Model.deviceInfo.Verify_Address" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Delivery_Flag" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <select asp-for="@Model.deviceInfo.Delivery_Flag" value="@Model.deviceInfo.Delivery_Flag" asp-items="@Model.Delivery_Flags" class="form-control"></select>
+                                                @*<input asp-for="@Model.deviceInfo.Delivery_Flag" class="form-control" />*@
+                                                <span asp-validation-for="@Model.deviceInfo.Delivery_Flag" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Address" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.Address" value="@Model.deviceInfo.Address" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Address" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Bus_Stop" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.Bus_Stop" value="@Model.deviceInfo.Bus_Stop" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Bus_Stop" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Lga" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.Lga" value="@Model.deviceInfo.Lga" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Lga" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.State" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.State" value="@Model.deviceInfo.State" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.State" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.deviceInfo.Country" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.deviceInfo.Country" value="@Model.deviceInfo.Country" class="form-control" />
+                                                <span asp-validation-for="@Model.deviceInfo.Country" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" value="Confirm" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                    </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

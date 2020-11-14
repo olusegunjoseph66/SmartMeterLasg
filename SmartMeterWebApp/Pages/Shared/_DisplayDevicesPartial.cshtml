@@ -1,0 +1,37 @@
+﻿@model DeviceInfoModel
+
+@{
+    bool showButtons = (bool)ViewData["ShowButtons"];
+}
+<tbody>
+    <tr>
+        <td>
+            <strong>@Model.Device_ID </strong><br />
+
+        </td>
+        <td>@Model.STAKEHOLDER_ID</td>
+        <td>@Model.Subscriber_ID</td>
+        <td>@Model.Device_Name</td>
+        <td>@Model.IOTDEviceId</td>
+        <td>@Model.Imei_Number</td>
+        <td>@string.Format("{0:F}", Model.Transaction_Date)</td>
+        <td>@Model.Address</td>
+        <td>@Model.Bus_Stop</td>
+        <td>@Model.Verify_Address</td>
+        <td>@Model.Flag_Operation</td>
+        <td>@Model.Delivery_Flag</td>
+        <td>@Model.State</td>
+        <td>@Model.Lga</td>
+        <td>@Model.Country</td>
+
+        <td>
+            @if (showButtons)
+            {
+                <a asp-page="/Stackholders/DeleteDevice" asp-route-Device_ID="@Model.Device_ID" class="btn btn-danger">Delete Device</a>
+                <a asp-page="/Stackholders/Editdevice" asp-route-Device_ID="@Model.Device_ID" class="btn btn-primary">Edit Device</a>
+            }
+        </td>
+    </tr>
+</tbody>
+
+

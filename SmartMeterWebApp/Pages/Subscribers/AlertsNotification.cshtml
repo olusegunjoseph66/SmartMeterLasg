@@ -1,0 +1,79 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Subscribers.AlertsNotificationModel
+@{
+
+    ViewData["Title"] = "AlertsNotification";
+    Layout = "~/Pages/Subscribers/Shared/_LayoutB.cshtml";
+
+}
+
+
+<br />
+<br />
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Sets Notification</strong>
+                        </div> <br />
+                        <br />
+                        @TempData["msg"]
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                <div class="card">
+                                    <div class="col-md-12 col-md-offset-2">
+
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.NotificatnInfo.UNITS_SETBY_USER" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.UNITS_SETBY_USER" class="form-control" />
+                                                <span asp-validation-for="@Model.NotificatnInfo.UNITS_SETBY_USER" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-2 col-md-offset-2">
+                                            <div class="form-group">
+                                                <input type="submit" value="Comfirm" class="btn btn-primary" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<br />
+<br />
+<br />
+<br />
+
+

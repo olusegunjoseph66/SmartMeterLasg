@@ -1,0 +1,101 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Adminstrators.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DeviceInfoModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Subscriber_ID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Subscriber_ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.STAKEHOLDER_ID)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.STAKEHOLDER_ID)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Imei_Number)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Imei_Number)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Device_Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Device_Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Bus_Stop)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Bus_Stop)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.State)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.State)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Lga)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Lga)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Verify_Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Verify_Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Delivery_Flag)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Delivery_Flag)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Flag_Operation)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Flag_Operation)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Country)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Country)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DeviceInfoModel.Transaction_Date)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DeviceInfoModel.Transaction_Date)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="DeviceInfoModel.Device_ID" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>

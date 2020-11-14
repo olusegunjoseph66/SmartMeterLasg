@@ -1,0 +1,82 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Adminstrators.roles.ManageStackerHoldersListRolesModel
+@{
+    ViewData["Title"] = "All Roles";
+}
+
+<div class="container-padding">
+    <a asp-page="/Adminstrators/roles/CreateRoles"
+       class="btn btn-primary mb-3" style="background-color:maroon;width:auto">
+        Add new role
+    </a>
+</div>
+<div class="container-padding">
+    <!-- Start Row -->
+    <div class="row">
+        <!-- Start Panel -->
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-title">
+                    All Roles
+                </div>
+                <div class="panel-body table-responsive">
+                    <table id="example0" class="table-bordered display">
+                        <thead>
+                            <tr>
+                                <th>RoleID</th>
+                                <th> RoleName</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model.vm.Any())
+                            {
+
+                                @foreach (var item in Model.vm)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            <form method="post">
+                                                <a asp-page="/Adminstrators/roles/ManagesStackholderEditRole" asp-route-id="@item.Id">Edit</a>
+                                                <button onclick="return confirm('Are you sure you want to delete the element with id: '+@item.Id)"
+                                                        asp-page-handler="DeleteRole"
+                                                        asp-route-id="@item.Id" class="btn btn-default">
+                                                    delete
+                                                </button>
+                                             </form>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                    @if (!Model.vm.Any())
+                    {
+                        <div class="card">
+                            <div class="card-header">
+                                No roles created yet
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    Use the button below to create a role
+                                </h5>
+                                <a class="btn btn-primary" style="background-color:maroon;width:auto"
+                                    asp-page="/Adminstrators/roles/CreateRoles">
+                                    Create Role
+                                </a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <!-- End Panel -->
+    </div>
+    <!-- End Row -->
+</div>

@@ -1,0 +1,28 @@
+﻿@page  "{Device_ID:min(1)?}/{handler?}"
+@model SmartMeterWebApp.Pages.Stackholders.DeleteDeviceModel
+@{
+    Layout = "~/Pages/Stackholders/Shared/_Layout.cshtml";
+    ViewData["Title"] = "DeleteDevice";
+}
+
+<h1>Delete Device</h1>
+
+@if (Model.deviceInfo is null)
+{
+    <h4>The requested record was not found.</h4>
+}
+else
+{
+    <div class="h4">
+        Are you sure you want to delete this device you registered on @Model.deviceInfo.Transaction_Date?
+    </div>
+    <form method="post">
+        <input asp-for="Device_ID" value="@Model.Device_ID" type="hidden" />
+        <div class="form-group">
+            <input type="submit" value="Delete Device" class="btn btn-danger" />
+
+            <input type="submit" value="Cancel" class="btn btn-outline-primary" />
+        </div>
+    </form>
+}
+

@@ -1,0 +1,34 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Adminstrators.roles.ManageStackerHoldersUserRolesModel
+@{
+}
+
+    <form method="post">
+        <input type="hidden" asp-for="@Model.vm.userId" />
+        <div class="card">
+            <div class="card-header">
+                <h2>Manage User Roles</h2>
+            </div>
+            <div class="card-body">
+                @for (int i = 0; i < Model.vm.userRolesViews.Count; i++)
+                {
+                    <div class="form-check m-1">
+                        <input type="hidden" asp-for="@Model.vm.userRolesViews[i].RoleId" />
+                        <input type="hidden" asp-for="@Model.vm.userRolesViews[i].RoleName" />
+                        <input asp-for="@Model.vm.userRolesViews[i].IsSelected" class="form-check-input" />
+                        <label class="form-check-label" asp-for="@Model.vm.userRolesViews[i].IsSelected">
+                            @Model.vm.userRolesViews[i].RoleName
+                        </label>
+                    </div>
+                }
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+            <div class="card-footer">
+                <input type="submit" value="Update" class="btn btn-primary"
+                       style="background-color:maroon;width:auto" />
+                <a asp-page="/Adminstrators/users/ManagesStackholderEditeUsers" asp-route-id="@Model.vm.userId"
+                   class="btn btn-primary" style="background-color:maroon; width:auto">Cancel</a>
+            </div>
+        </div>
+    </form>
+

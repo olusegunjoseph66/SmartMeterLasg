@@ -1,0 +1,126 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Stackholders.DevicesListModel
+@using Microsoft.EntityFrameworkCore;
+@{
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    //Layout = "~/Pages/Stackholders/Shared/_Layout.cshtml";
+    ViewData["Title"] = "DevicesList";
+    ViewData["ShowButtons"] = true;
+}
+
+<h1>Devices List</h1>
+
+
+    
+
+    @*<form method="get">
+            <div class="input-group">
+                <input class="form-control" placeholder="Device Id" asp-for="SearchTerm">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>Search</button>
+                </div>
+            </div>
+        </form>*@
+
+    <!-- MAIN CONTENT-->
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <a asp-area="" asp-page="/Stackholders/EditDevice" data-toggle="tooltip" title="" class="btn btn-primary"
+               data-original-title="Add New Devices "><i class="fa fa-plus"></i>&nbsp;New Devices</a>
+
+            <a asp-area="" asp-page="/Stackholders/EditIOTDEviceDetails" data-toggle="tooltip" title="" class="btn btn-primary"
+               data-original-title="Configure New IOTdevice "><i class="fa fa-plus"></i>&nbsp;New DeviceConfiq</a>
+
+            <p>Devices List</p>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        <form method="get">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label class="control-label" for="subscriberId">Device Id</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input name="SearchTerm" value="" placeholder="Device Id" asp-for="@Model.SearchTerm" class="form-control" type="text"><ul class="dropdown-menu"></ul>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="submit" id="button-filter" class="btn btn-primary">
+                                        <i class="fa fa-search"></i> Search
+                                    </button>
+                                </div>
+                            </div>
+                            <br /><br />
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <label asp-for="@Model.StartDate"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input asp-for="@Model.StartDate" />
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-2">
+                                    <label asp-for="@Model.EndDate"></label>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <input asp-for="@Model.EndDate" />
+                                    </div>
+                                </div>
+
+                            </div><br /><br />
+
+
+                        </form>
+                        @if (Model.AlldeviceInfo.ToList()?.Count > 0)
+                        {
+                            <div class="table-responsive table--no-card m-b-30">
+                                <table class="table table-borderless table-hover table-striped table-earning">
+
+
+                                    <thead>
+                                        <tr>
+                                            <th><strong>DEVICE ID</strong></th>
+                                            <th><strong>STAKEHOLDER ID</strong></th>
+                                            <th><strong>SUBSCRIBER ID</strong></th>
+                                            <th><strong>DEVICE NAME</strong></th>
+                                            <th><strong>IOTDEviceId</strong></th>
+                                            <th><strong>IMEI NUMBER</strong></th>
+                                            <th><strong>DATE OF TRANSACTION</strong></th>
+                                            <th><strong>ADDRESS</strong></th>
+                                            <th><strong>BUS STOP</strong></th>
+                                            <th><strong>VERIFY ADDRESS</strong></th>
+                                            <th><strong>FLAG OPERATION</strong></th>
+                                            <th><strong>DELIVERY FLAG</strong></th>
+                                            <th><strong>STATE</strong></th>
+                                            <th><strong>LGA</strong></th>
+                                            <th><strong>COUNTRY</strong></th>
+                                            <th> </th>
+                                        </tr>
+
+                                    </thead>
+
+
+                                    @foreach (var models in Model.AlldeviceInfo)
+                                    {
+                                        <partial name="_DisplayDevicesPartial" model="models"
+                                                 view-data="ViewData" />
+                                    }
+                                </table>
+                            </div>
+
+
+
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+

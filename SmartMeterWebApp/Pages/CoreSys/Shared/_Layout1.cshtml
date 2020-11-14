@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/css/sb-admin/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/css/sb-admin/css/sb-admin.css" rel="stylesheet" />
+    <link href="~/css/sb-admin/css/plugins/morris.css" rel="stylesheet" />
+    <link href="~/css/sb-admin/font-awesome-4.1.0/css/font-awesome.css" rel="stylesheet" />
+
+</head>
+@*<body>
+        <div>
+            @RenderBody()
+        </div>
+    </body>*@
+
+<body>
+    <div id="wrapper">
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">@ViewBag.StoreName</a>
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-envelope"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu message-dropdown">
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>@*@(TempData.ContainsKey("Fullname") ? TempData.Peek("Fullname").ToString() : User.Identity.GetUserName() )*@</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>@*@(TempData.ContainsKey("Fullname") ? TempData.Peek("Fullname").ToString() : User.Identity.GetUserName() )*@</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-preview">
+                            <a href="#">
+                                <div class="media">
+                                    <span class="pull-left">
+                                        <img class="media-object" src="http://placehold.it/50x50" alt="">
+                                    </span>
+                                    <div class="media-body">
+                                        <h5 class="media-heading">
+                                            <strong>@*@(TempData.ContainsKey("Fullname") ? TempData.Peek("Fullname").ToString() : User.Identity.GetUserName() )*@</strong>
+                                        </h5>
+                                        <p class="small text-muted"><i class="fa fa-clock-o"></i> Yesterday at 4:32 PM</p>
+                                        <p>Lorem ipsum dolor sit amet, consectetur...</p>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <li class="message-footer">
+                            <a href="#">Read All New Messages</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell"></i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-primary">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-success">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-info">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-warning">Alert Badge</span></a>
+                        </li>
+                        <li>
+                            <a href="#">Alert Name <span class="label label-danger">Alert Badge</span></a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> @*@(TempData.ContainsKey("Fullname") ? TempData.Peek("Fullname").ToString() : User.Identity.GetUserName() )*@ <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#"> @*="@Url.Action("Index", "Account", new {area  = "Merchant"})"*@<i class="fa fa-fw fa-user"></i> Profile</a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                @*="@Url.Action("Inbox", "Messages", new {area = "Merchant"})">*@
+                                <i class="fa fa-fw fa-envelope"></i> Inbox
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#"> @*="@Url.Action("LogOff", "Account", new{area="", token=User.Identity.Name})">*@<i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li class="@ViewBag.dashboarActive">
+                        <a href="/Subscribers/Dashboard"> @*="@Url.Action("Index", "Dashboard", new{area = "CustomerService"})">*@<i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="@ViewBag.catalogActive">
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo">
+                            <i class="fa fa-fw fa-tags"></i> Core System <i class="fa fa-fw fa-caret-down"></i>
+                        </a>
+                        <ul id="demo" class="collapse in">
+                            <li class="@ViewBag.categoriesActive">
+                                <a href="#"> @*="@Url.Action("New", "Orders")">*@Core System Features</a>
+                            </li>
+                            <li class="@ViewBag.productsActive">
+                                <a href="/CoreSys/Dashboard"> @*="@Url.Action("Index", "Orders", new { status = OrderItemStatus.Accepted })">*@Dash Board</a>
+                            </li>
+                            <li class="@ViewBag.productsActive">
+                                <a href="/CoreSys/Usagetimedaily"> @*="@Url.Action("Index", "Orders", new {status = OrderItemStatus.Shipped})">*@Time Of Usage</a>
+                            </li>
+                            <li class="@ViewBag.productsActive">
+                                <a href="/CoreSys/Usagetimemonthly"> @*="@Url.Action("Index", "Orders", new { status = OrderItemStatus.Delivered })">*@Usage Time Monthly</a>
+                            </li>
+                            @*<li class="@ViewBag.productsActive">
+                                        <a href="#"> ="@Url.Action("Index", "Orders", new { status = OrderItemStatus.Cancelled })"></a>
+                                </li>*@
+
+                        </ul>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse fa fa-support fa-5x -->
+        </nav>
+        <div id="page-wrapper">
+            <div class="container-fluid" style="min-height: 650px;">
+                @*@RenderSection("_breadCrumb", required: false)
+                    @{ Html.RenderPartial("_alert");}*@
+                @RenderBody()
+
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    @RenderSection("footer", required: false)
+
+    <!-- jQuery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/Scripts/jquery-2.1.3.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    @*<script src="/skin/admin/@ViewBag.AdminTheme/js/bootstrap.min.js"></script>*@
+    <script src="~/css/sb-admin/js/bootstrap.js"></script>
+    <script src="~/css/sb-admin/js/jquery.js"></script>
+    <script src="~/css/sb-admin/js/bootstrap.min.js"></script>
+
+
+    @RenderSection("scripts", required: false)
+    <script>
+        jQuery(function () {
+            jQuery("[data-toggle='tooltip']").tooltip();
+        });
+    </script>
+</body>
+</html>

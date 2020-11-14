@@ -1,0 +1,76 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Subscribers.TurnOnMeterModel
+@{
+    ViewData["Title"] = "TurnOnMeter";
+    Layout = "~/Pages/Subscribers/Shared/_LayoutB.cshtml";
+}
+
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+
+        <h2>Turn Meter On</h2>
+        <div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <br />
+                        <br />
+                        @TempData["msg"]
+                        <br />
+                        <br />
+                        <form method="post">
+                            <div class="row">
+                                <input asp-for="@Model.IOTDEviceDetail.ScopeID" value="@Model.IOTDEviceDetail.ScopeID" type="hidden" />
+                                <input asp-for="@Model.IOTDEviceDetail.IOTDEviceId" value="@Model.IOTDEviceDetail.IOTDEviceId" type="hidden" />
+                                <input asp-for="@Model.IOTDEviceDetail.PrimaryKey" value="@Model.IOTDEviceDetail.PrimaryKey" type="hidden" />
+
+                                @*<div class="col-md-2">asp-page-handler="OnPost"
+                <label class="control-label" for="subscriberId">Subscribers Id</label>
+                </div>*@
+                                <div class="col-md-8">
+                                    <button type="submit" id="button-filter" class="btn btn-primary">
+                                        <i class="fa fa-life-saver"></i> On Meter
+                                    </button>
+                                </div>
+                                @*<div class="col-md-8">
+                    <button type="submit" id="button-filter" class="btn btn-primary">
+                        <i class="fa fa-eject"></i> Off
+                    </button>
+                </div>*@
+                            </div>
+                            <br /><br />@*@TempData["Msg"].ToString()*@
+                        </form>
+
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        @*<form enctype="multipart/form-data" asp-page-handler="OnPostAsyncOFF" method="post">
+                            <div class="row">*@
+                                @*<div class="col-md-2">
+                    <label class="control-label" for="subscriberId">Subscribers Id</label>
+                </div>*@
+                                @*<div class="col-md-8">
+                    <button type="submit" id="button-filter" class="btn btn-primary">
+                        <i class="fa fa-life-saver"></i> On
+                    </button>
+                </div>*@
+                                @*<div class="col-md-8">
+                                    <button type="submit" id="button-filters" class="btn btn-primary">
+                                        <i class="fa fa-eject"></i> Off Meter
+                                    </button>
+                                </div>
+                            </div>
+                            <br /><br />
+                        </form>*@
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

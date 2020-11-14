@@ -1,0 +1,91 @@
+﻿@page  "{IOTDEviceDetail_Id:min(1)?}/{handler?}"
+@model SmartMeterWebApp.Pages.Stackholders.EditIOTDEviceDetailsModel
+@{
+    ViewData["Title"] = "EditIOTDEviceDetails";
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    var pageHeader = Model.IOTDEviceDetail.IOTDEviceDetail_Id > 0 ? "Edit" : "Create";
+}
+
+<h2>EditIOTDEvice Details</h2>
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Edit Device</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                <div class="card">
+                                    <div class="col-md-12 col-md-offset-2">
+
+
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input asp-for="@Model.IOTDEviceDetail.IOTDEviceDetail_Id" value="@Model.IOTDEviceDetail.IOTDEviceDetail_Id" type="hidden" />
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.IOTDEviceDetail.Subscriber_ID" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.IOTDEviceDetail.Subscriber_ID" value="@Model.IOTDEviceDetail.Subscriber_ID" class="form-control" />
+                                                <span asp-validation-for="@Model.IOTDEviceDetail.Subscriber_ID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.IOTDEviceDetail.STAKEHOLDER_ID" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.IOTDEviceDetail.STAKEHOLDER_ID" value="@Model.IOTDEviceDetail.STAKEHOLDER_ID" class="form-control" />
+                                                <span asp-validation-for="@Model.IOTDEviceDetail.STAKEHOLDER_ID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.IOTDEviceDetail.ScopeID" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.IOTDEviceDetail.ScopeID" value="@Model.IOTDEviceDetail.ScopeID" class="form-control" />
+                                                <span asp-validation-for="@Model.IOTDEviceDetail.ScopeID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.IOTDEviceDetail.IOTDEviceId" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input asp-for="@Model.IOTDEviceDetail.IOTDEviceId" value="@Model.IOTDEviceDetail.IOTDEviceId" class="form-control" />
+                                                <span asp-validation-for="@Model.IOTDEviceDetail.IOTDEviceId" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.IOTDEviceDetail.PrimaryKey" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input asp-for="@Model.IOTDEviceDetail.PrimaryKey" value="@Model.IOTDEviceDetail.PrimaryKey" class="form-control" />
+                                                <span asp-validation-for="@Model.IOTDEviceDetail.PrimaryKey" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="submit" value="Confirm" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

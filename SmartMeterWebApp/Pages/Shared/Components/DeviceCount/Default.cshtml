@@ -1,0 +1,30 @@
+﻿@*@page
+    @{
+        ViewData["Title"] = "Default";
+        Layout = "~/Pages/Shared/_Layout.cshtml";
+    }
+
+    <h2>Default</h2>*@
+
+@model IEnumerable<DeviceCount>
+
+    <h3>Device Count Summary</h3>
+
+<table class="table table-bordered">
+    <thead class="thead-light">
+        <tr>
+            <th>Device</th>
+            <th>Head Count</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var deptHeadCount in Model)
+        {
+            <tr>
+                <td>@deptHeadCount.Device_Name</td>
+                <td>@deptHeadCount.Count</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

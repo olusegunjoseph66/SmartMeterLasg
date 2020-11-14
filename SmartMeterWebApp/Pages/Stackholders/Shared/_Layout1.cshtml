@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+
+    <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery-3.3.1.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/dataTables.min.js"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DataTable').DataTable();
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $(".chkCheckBoxId").prop("checked", true)
+                }
+                else {
+                    $(".chkCheckBoxId").prop("checked", false)
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div>
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Subscribers.MeterusageModel
+@{
+    ViewData["Title"] = "Meter usage";
+    Layout = "~/Pages/Subscribers/Shared/_LayoutB.cshtml";
+}
+
+
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <h2>Meter Usage</h2>
+        <div>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+                        <div class="clearfix"></div>
+                        <br />
+                        <br />
+                        @if (Model.billingsRealData.ToList()?.Count > 0)
+                        {
+                            <div class="table-responsive table--no-card m-b-30">
+                                <table class="table table-borderless table-hover table-striped table-earning">
+                                    <thead>
+                                        <tr>
+                                            <th> </th>
+                                            <th><strong>BILLINGS  ID</strong></th>
+                                            @*<th><strong>STAKEHOLDER ID</strong></th>*@
+                                            <th><strong>SUBSCRIBER ID</strong></th>
+                                            @*<th><strong>DEVICE ID</strong></th>
+                                            <th><strong>DEVICE NAME</strong></th>*@
+                                            <th><strong>DATE OF TRANSACTION</strong></th>
+                                            <th><strong>MONTHLY USAGE DURATION (Hr)</strong></th>
+                                            <th><strong>TOTAL ENERGY CONSUMED FOR 30DAYS</strong></th>
+                                            <th><strong>AMOUNT TO PAY (₦) </strong></th>
+                                            @*<th><strong>LGA</strong></th>
+                                             <th><strong>BUS STOP</strong></th>*@
+                                        </tr>
+
+                                    </thead>
+
+
+                                    @foreach (var models in Model.billingsRealData)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <a asp-page="/subscribers/Detailmeter" asp-route-Billings_Id="@models.Billings_Id" class="btn btn-primary">Details of Billings</a>
+
+                                                </td>
+                                                <td>  <strong>@models.Billings_Id </strong><br />  </td>
+                                                @*<td>@models.STAKEHOLDER_ID</td>*@
+                                                <td>SMtBV5jXX-@models.SUBSCRIBER_ID</td>
+                                                @*<td>@models.DEviceId</td>
+                                                 <td>@models.Device_Name</td>*@
+                                                <td>@string.Format("{0:F}", models.TIME_OF_TRANSACTION)</td>
+                                                <td>@models.USAGE_DURATION</td>
+                                                <td>@models.EnergyConsumedFor30Days</td>
+                                                <td>@Decimal.Round(models.AmountToPay, MidpointRounding.AwayFromZero)</td>
+                                                @*<td>@models.Lga</td>
+                                                 <td>@models.Bus_Stop</td>*@
+
+                                            </tr>
+                                        </tbody>
+                                    }
+                                </table>
+                            </div>
+
+
+
+                        }
+                    </div>
+
+                    <div class="clearfix"></div>
+             
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

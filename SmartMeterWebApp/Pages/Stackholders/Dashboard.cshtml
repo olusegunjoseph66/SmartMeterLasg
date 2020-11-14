@@ -1,0 +1,450 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Stackholders.DashboardModel
+@{
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="overview-wrap">
+                        <h2 class="title-1">overview</h2>
+                        <a asp-area="" asp-page="/Stackholders/RegisterSubscriber" class="au-btn au-btn-icon au-btn--blue">
+                            <i class="zmdi zmdi-plus"></i>&nbsp;add subscriber
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row m-t-25">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c1">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-account-o"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@Model.AllSubscribers.Count()</h2>
+                                    <span>All Subscribers</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c2">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-windows"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@Model.AlldeviceInfo.Count()</h2>
+                                    <span>Registered Devices</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c3">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@Model.billingsRealData.Count()</h2>
+                                    <span>Billings</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c4">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-money"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@ViewBag.MeterStatus</h2>
+                                    <span>Connected Meters</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart4"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="au-card recent-report">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">recent reports</h3>
+                            <div class="chart-info">
+                                <div class="chart-info__left">
+                                    @*<div class="chart-note">
+                                        <span class="dot dot--blue"></span>
+                                        <span>products</span>
+                                    </div>
+                                    <div class="chart-note mr-0">
+                                        <span class="dot dot--green"></span>
+                                        <span>services</span>
+                                    </div>*@
+                                </div>
+                                <div class="chart-info__right">
+                                    @*<div class="chart-statis">
+                                        <span class="index incre">
+                                            <i class="zmdi zmdi-long-arrow-up"></i>25%
+                                        </span>
+                                        <span class="label">products</span>
+                                    </div>
+                                    <div class="chart-statis mr-0">
+                                        <span class="index decre">
+                                            <i class="zmdi zmdi-long-arrow-down"></i>10%
+                                        </span>
+                                        <span class="label">services</span>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="recent-report__chart">    <canvas id="subscriber_bar-chart" width="400" height="250"></canvas>
+                                @*<canvas id="recent-rep-chart"></canvas>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="au-card chart-percent-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2 tm-b-5">char by %</h3>
+                            <div class="row no-gutters">
+                                @*<div class="col-xl-6">
+                                    <div class="chart-note-wrap">
+                                        <div class="chart-note mr-0 d-block">
+                                            <span class="dot dot--blue"></span>
+                                            <span>products</span>
+                                        </div>
+                                        <div class="chart-note mr-0 d-block">
+                                            <span class="dot dot--red"></span>
+                                            <span>services</span>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="col-xl-6">
+                                    <div class="percent-chart">   <canvas id="stachholder_doughnut_chart" width="800" height="900"></canvas>
+                                        @*<canvas id="percent-chart"></canvas>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2 class="title-1 m-b-25">Subscribers</h2>
+                    <div class="table-responsive table--no-card m-b-40">
+                        <table class="table table-borderless table-striped table-earning">
+
+                            <thead>
+                                <tr>
+                                    <th><strong>ID</strong></th>
+                                    <th><strong>FIRST NAME</strong></th>
+                                    <th><strong>LAST NAME</strong></th>
+                                    <th><strong>PHONE</strong></th>
+                                    <th><strong>GENDER</strong></th>
+                                    <th><strong>EMAIL</strong></th>
+                                </tr>
+                            </thead>
+                            @foreach (var models in Model.AllSubscribers)
+                            {
+                                <tbody>
+                                    <tr>
+                                        <td class="text-right">
+                                            <strong>@models.STAKEHOLDER_ID </strong><br />
+
+                                        </td>
+                                        <td class="text-right">@models.First_Name </td>
+                                        <td class="text-right">@models.Last_Name</td>
+                                        <td class="text-right">@models.Phone</td>
+                                        <td class="text-right">@models.Gender</td>
+                                        <td class="text-right">@models.Email</td>
+
+                                    </tr>
+                                </tbody>
+                            }
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <h2 class="title-1 m-b-25">Top LGA Users</h2>
+                    <div class="au-card au-card--bg-blue au-card-top-countries m-b-40">
+                        <div class="au-card-inner">
+                            <div class="table-responsive">
+                                <table class="table table-top-countries">
+                                    <tbody>
+                                        <tr>
+                                            <td>Ikeja</td>
+                                            <td class="text-right">119,366.96</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ayobo</td>
+                                            <td class="text-right">70,261.65</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Amuwo</td>
+                                            <td class="text-right">46,399.22</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ajegunle</td>
+                                            <td class="text-right">35,364.90</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Iyana oworo</td>
+                                            <td class="text-right">20,366.96</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Ajah</td>
+                                            <td class="text-right">10,366.96</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Agege</td>
+                                            <td class="text-right">5,366.96</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Oshodi</td>
+                                            <td class="text-right">1639.32</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- DATA TABLE-->
+            <section class="p-t-20">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3 class="title-5 m-b-35">Devices</h3>
+                            <div class="table-data__tool">
+                                <div class="table-data__tool-left">
+                                    <div class="rs-select2--light rs-select2--md">
+                                        <select class="js-select2" name="property">
+                                            <option selected="selected">All Properties</option>
+                                            <option value="">Option 1</option>
+                                            <option value="">Option 2</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                    <div class="rs-select2--light rs-select2--sm">
+                                        <select class="js-select2" name="time">
+                                            <option selected="selected">Today</option>
+                                            <option value="">3 Days</option>
+                                            <option value="">1 Week</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                    <button class="au-btn-filter">
+                                        <i class="zmdi zmdi-filter-list"></i>filters
+                                    </button>
+                                </div>
+                                <div class="table-data__tool-right">
+                                    <a asp-area="" asp-page="/Stackholders/EditDevice" data-toggle="tooltip" title="" class="btn btn-primary"
+                                       data-original-title="Add New Devices ">
+                                        <i class="zmdi zmdi-plus"></i>&nbsp;New Devices
+                                    </a>
+
+                                    <div class="rs-select2--dark rs-select2--sm rs-select2--dark2">
+                                        <select class="js-select2" name="type">
+                                            <option selected="selected">Export</option>
+                                            <option value="">Excel</option>
+                                            <option value="">Pdf</option>
+                                        </select>
+                                        <div class="dropDownSelect2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-responsive table-responsive-data2">
+                                <table class="table table-data2">
+
+                                    <thead>
+                                        <tr>
+                                            <th><strong>DEVICE ID</strong></th>
+                                            <th><strong>STAKEHOLDER ID</strong></th>
+                                            <th><strong>DEVICE NAME</strong></th>
+                                            <th><strong>IMEI NUMBER</strong></th>
+                                            <th><strong>DATE OF TRANSACTION</strong></th>
+                                            <th><strong>ADDRESS</strong></th>
+                                            <th><strong>FLAG OPERATION</strong></th>
+                                            <th><strong>DELIVERY FLAG</strong></th>
+                                            <th> </th>
+                                        </tr>
+
+                                    </thead>
+
+
+                                    @foreach (var models in Model.AlldeviceInfo)
+                                    {
+                                        <tbody>
+                                            <tr class="spacer"></tr>
+                                            <tr class="tr-shadow">
+                                                <td>
+                                                    <strong>@models.Device_ID </strong><br />
+
+                                                </td>
+                                                <td>@models.STAKEHOLDER_ID</td>
+                                                <td>@models.Device_Name</td>
+                                                <td>@models.Imei_Number</td>
+                                                <td>@string.Format("{0:F}", models.Transaction_Date)</td>
+                                                <td>@models.Address</td>
+                                                <td>@models.Flag_Operation</td>
+                                                <td>@models.Delivery_Flag</td>
+
+                                                <td>
+                                                    <div class="table-data-feature">
+                                                        <a asp-page="/Stackholders/Editdevice" asp-route-Device_ID="@models.Device_ID" class="item" data-toggle="tooltip" data-placement="top" title="Send"><i class="zmdi zmdi-mail-send"></i></a>
+                                                        @*<button asp-page="/Stackholders/Editdevice" asp-route-Device_ID="@models.Device_ID" class="item" data-toggle="tooltip" data-placement="top" title="Send">
+                                                                <i class="zmdi zmdi-mail-send"></i>
+                                                            </button>*@
+                                                        <a asp-page="/Stackholders/Editdevice" asp-route-Device_ID="@models.Device_ID" class="item" data-toggle="tooltip" data-placement="top" title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </a>
+                                                        <a asp-page="/Stackholders/DeleteDevice" asp-route-Device_ID="@models.Device_ID" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </a>
+                                                        <a asp-page="/Stackholders/Editdevice" asp-route-Device_ID="@models.Device_ID" class="item" data-toggle="tooltip" data-placement="top" title="More">
+                                                            <i class="zmdi zmdi-more"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    }
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- END DATA TABLE-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p>Copyright © @DateTime.Now.Year SmartMeterApp. All rights reserved. Template by <a href="">SmartMeterApp</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        const xs = []; const ys = []
+        const api_url = "/api/Stackholder";
+        async function getdata() {
+            const response = await fetch(api_url)
+            const data = await response.json();
+            data.forEach((i) => {
+                xs.push(i.billingMonth);
+                ys.push(i.energyConsumedFor30Days);
+            });
+            console.log(xs, ys);
+            return { xs, ys };
+        }
+
+    </script>
+    <script>
+        async function DisplaySubscriberChart() {
+            const data = await getdata();
+            const mychart = new Chart(document.getElementById("subscriber_bar-chart"), {
+                type: 'bar',
+                data: {
+                    labels: data.xs,
+                    datasets: [
+                        {
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                            data: data.ys
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'stackholder total amount made monthly '
+                    }
+                }
+            });
+        }
+        DisplaySubscriberChart();
+    </script>
+
+    @*}
+        @section Scripts {*@
+
+    <script>
+        const xss = []; const yss = []
+        const api_urls = "/api/Stackholder";
+        async function getstackholderdata() {
+            const response = await fetch(api_urls)
+            const datastack = await response.json();
+            datastack.forEach((i) => {
+                xss.push(i.billingMonth);
+                yss.push(i.energyConsumedFor30Days);
+            });
+            console.log(xss, yss);
+            return { xss, yss };
+        }
+
+        async function DisplayStacholderChart() {
+            const datastacks = await getstackholderdata();
+            new Chart(document.getElementById("stachholder_doughnut_chart"), {
+                type: 'doughnut',
+                data: {
+                    labels: datastacks.xss,
+                    datasets: [
+                        {
+                            label: "stackholder",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                            data: datastacks.yss
+                        }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'stackholder chart'
+                    }
+                }
+            });
+        }
+
+        DisplayStacholderChart();
+    </script>
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>

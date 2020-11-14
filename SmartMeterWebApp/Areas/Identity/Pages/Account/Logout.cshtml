@@ -1,0 +1,10 @@
+﻿@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Log out";
+}
+
+    <header>
+        <h1>@ViewData["Title"]</h1>
+        <p>You have successfully logged out of the application.</p>  <a class="dropdown-item"  asp-page="/Index" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">Home</a>
+    </header>

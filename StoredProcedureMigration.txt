@@ -1,0 +1,208 @@
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace SmartMeterLibServices.Migrations
+{
+    public partial class billingsProcedure : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            string procedure = @"CREATE PROCEDURE [dbo].[Select_AllBillings]
+                                    @startDate date,
+						            @endDate date						
+                                AS
+                                Begin
+                                     Select DEviceId,Subscriber_ID,STAKEHOLDER_ID,USAGE_DURATION,MONTHLY_DURATION_PER_HR,AMOUNT_CONSUMPTION_PER_HR,TIME_OF_TRANSACTION
+	                                 From dbo.billingsInfos Where 1 = 1
+	                                 Or(TIME_OF_TRANSACTION <= @endDate And @endDate < TIME_OF_TRANSACTION)
+	                                 Or(TIME_OF_TRANSACTION <= @startDate And @startDate < TIME_OF_TRANSACTION)
+	                                 Order By DEviceId  Desc
+                                End";
+            migrationBuilder.Sql(procedure);
+
+            string procedure2 = @"CREATE PROCEDURE [dbo].[GetBillings_ById]
+							    @BillingsId int 
+                                AS
+                                BEGIN
+                                    set nocount on
+                                        Select DEviceId,Subscriber_ID,STAKEHOLDER_ID,USAGE_DURATION,MONTHLY_DURATION_PER_HR,AMOUNT_CONSUMPTION_PER_HR,TIME_OF_TRANSACTION
+	                                    From dbo.billingsInfos
+                                    WHERE Billings_Id = @BillingsId
+                                END";
+            migrationBuilder.Sql(procedure2);
+
+
+            string procedure3 = @"CREATE PROCEDURE [dbo].[Delete_Billings]
+							    @BillingsId int 
+                               AS
+	                            BEGIN
+	                               set nocount on
+	                               DELETE FROM dbo.billingsInfos 
+	                               WHERE Billings_Id = @BillingsId
+	                            END";
+            migrationBuilder.Sql(procedure3);
+
+            string procedure4 = @"CREATE PROCEDURE [dbo].[Insert_Select_AllBillings]	
+	                            @Subscriber_ID             INT,
+	                            @STAKEHOLDER_ID            VARCHAR(50),
+	                            @USAGE_DURATION            INT,
+	                            @MONTHLY_DURATION_PER_HR   DECIMAL(26,25),
+	                            @AMOUNT_CONSUMPTION_PER_HR DECIMAL(26,25)	
+                                AS
+                                Begin
+	                               
+	                                Insert into dbo.billingsInfos(Subscriber_ID,STAKEHOLDER_ID,USAGE_DURATION,MONTHLY_DURATION_PER_HR,AMOUNT_CONSUMPTION_PER_HR)
+	                                Values(@Subscriber_ID,@STAKEHOLDER_ID, @USAGE_DURATION,@MONTHLY_DURATION_PER_HR,@AMOUNT_CONSUMPTION_PER_HR )	            
+                                End";
+            migrationBuilder.Sql(procedure4);
+
+            string procedure5 = @"CREATE PROCEDURE [dbo].[Update_Billings]
+                                @BillingsID				   INT,
+								@Device_ID				   INT,
+								@Subscriber_ID			   INT,
+								@STAKEHOLDER_ID			   VARCHAR(50),
+								@USAGE_DURATION			   INT,
+								@MONTHLY_DURATION_PERHR    DECIMAL(26,25),
+								@AMOUNT_CONSUMPTION_PER_HR DECIMAL(26,25)
+                            AS
+	                            BEGIN
+		                              set nocount on;
+		                              UPDATE dbo.billingsInfos
+		                              SET   Subscriber_ID					=  @Subscriber_ID
+			                               ,STAKEHOLDER_ID					= @STAKEHOLDER_ID
+			                               ,DEviceId						= @Device_ID
+			                               ,USAGE_DURATION                  = @USAGE_DURATION
+			                               ,MONTHLY_DURATION_PER_HR	        = @MONTHLY_DURATION_PERHR
+			                               ,AMOUNT_CONSUMPTION_PER_HR       = @AMOUNT_CONSUMPTION_PER_HR
+			                               WHERE Billings_Id   = @BillingsID
+	                            END";
+            migrationBuilder.Sql(procedure5);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            string procedure = @"Drop procedure [dbo].[Select_AllBillings]";
+            migrationBuilder.Sql(procedure);
+
+            string procedure2 = @"Drop procedure [dbo].[GetBillings_ById]";
+            migrationBuilder.Sql(procedure2);
+
+            string procedure3 = @"Drop procedure [dbo].[Delete_Billings]";
+            migrationBuilder.Sql(procedure3);
+
+            string procedure4 = @"Drop procedure [dbo].[Insert_Select_AllBillings]";
+            migrationBuilder.Sql(procedure4);
+
+            string procedure5 = @"Drop procedure [dbo].[Update_Billings]";
+            migrationBuilder.Sql(procedure5);
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+using System;
+using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace SmartMeterLibServices.Migrations
+{
+    public partial class GetSubscriber_ById : Migration
+    {
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "deviceInfos",
+                columns: table => new
+                {
+                    Device_ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Subscriber_ID = table.Column<int>(nullable: false),
+                    STAKEHOLDER_ID = table.Column<string>(nullable: true),
+                    Imei_Number = table.Column<string>(nullable: true),
+                    Device_Name = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    Bus_Stop = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Lga = table.Column<string>(nullable: true),
+                    Verify_Address = table.Column<string>(nullable: true),
+                    Delivery_Flag = table.Column<string>(nullable: true),
+                    Flag_Operation = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true),
+                    Transaction_Date = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_deviceInfos", x => x.Device_ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "subscriberInfos",
+                columns: table => new
+                {
+                    STAKEHOLDER_ID = table.Column<string>(nullable: false),
+                    First_Name = table.Column<string>(nullable: true),
+                    Last_Name = table.Column<string>(nullable: true),
+                    Phone = table.Column<string>(nullable: true),
+                    Gender = table.Column<string>(nullable: true),
+                    Dofb = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    State = table.Column<string>(nullable: true),
+                    Country = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_subscriberInfos", x => x.STAKEHOLDER_ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "userInfos",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    EmailAddress = table.Column<string>(nullable: true),
+                    CreatedDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_userInfos", x => x.Id);
+                });
+           
+            string procedure = @"CREATE PROCEDURE GetSubscriber_ById
+							        @Subscriber_Id int 
+                                    AS
+                                    BEGIN
+                                       set nocount on
+                                       SELECT  SUBSCRIBER_ID,STAKEHOLDER_ID,FIRST_NAME,LAST_NAME,PHONE,GENDER,DOFB,EMAIL,ADDRESS,STATE,COUNTRY
+                                       FROM dbo.SUBSCRIBER 
+                                       WHERE SUBSCRIBER_ID = @Subscriber_Id
+                                    END";
+            migrationBuilder.Sql(procedure);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "deviceInfos");
+
+            migrationBuilder.DropTable(
+                name: "subscriberInfos");
+
+            migrationBuilder.DropTable(
+                name: "userInfos");
+            string procedure = @"DROP PROCEDURE GetSubscriber_ById";
+            migrationBuilder.Sql(procedure);
+        }
+    }
+}

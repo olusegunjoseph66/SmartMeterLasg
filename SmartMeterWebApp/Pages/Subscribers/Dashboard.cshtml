@@ -1,0 +1,325 @@
+﻿
+@page
+@model SmartMeterWebApp.Pages.Subscribers.DashboardModel
+@{
+    Layout = "~/Pages/Subscribers/Shared/_LayoutB.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="overview-wrap">
+                        <h2 class="title-1">overview</h2>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row m-t-25">
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c1">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-account-o"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@*@Model.AllSubscribers.Count()*@</h2>
+                                    <span>All Subscribers</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart1"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c2">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-windows"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@*@Model.AlldeviceInfo.Count()*@</h2>
+                                    <span>Device Usage</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-3">
+                    <div class="overview-item overview-item--c3">
+                        <div class="overview__inner">
+                            <div class="overview-box clearfix">
+                                <div class="icon">
+                                    <i class="zmdi zmdi-calendar-note"></i>
+                                </div>
+                                <div class="text">
+                                    <h2>@Model.billingsRealData.Count()</h2>
+                                    <span>Billings</span>
+                                </div>
+                            </div>
+                            <div class="overview-chart">
+                                <canvas id="widgetChart3"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="au-card recent-report">
+                        <div class="au-card-inner">
+                            <h3 class="title-2">recent reports</h3>
+                            <div class="chart-info">
+                                <div class="chart-info__left">
+                                    @*<div class="chart-note">
+                                            <span class="dot dot--blue"></span>
+                                            <span>products</span>
+                                        </div>
+                                        <div class="chart-note mr-0">
+                                            <span class="dot dot--green"></span>
+                                            <span>services</span>
+                                        </div>*@   
+                                </div>
+                                <div class="chart-info__right">
+                                    @*<div class="chart-statis">
+                                        <span class="index incre">
+                                            <i class="zmdi zmdi-long-arrow-up"></i>25%
+                                        </span>
+                                        <span class="label">products</span>
+                                    </div>
+                                    <div class="chart-statis mr-0">
+                                        <span class="index decre">
+                                            <i class="zmdi zmdi-long-arrow-down"></i>10%
+                                        </span>
+                                        <span class="label">services</span>
+                                    </div>*@
+                                </div>
+                            </div>
+                            <div class="recent-report__chart">  <canvas id="subscriber_bar-chart" width="400" height="250"></canvas>
+                                @*<canvas id="recent-rep-chart"></canvas>*@
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="au-card chart-percent-card">
+                        <div class="au-card-inner">
+                            <h3 class="title-2 tm-b-5">char by %</h3>
+                            <div class="row no-gutters">
+                                @*<div class="col-xl-6">
+                                    <div class="chart-note-wrap">
+                                        <div class="chart-note mr-0 d-block">
+                                            <span class="dot dot--blue"></span>
+                                            <span>products</span>
+                                        </div>
+                                        <div class="chart-note mr-0 d-block">
+                                            <span class="dot dot--red"></span>
+                                            <span>services</span>
+                                        </div>
+                                    </div>
+                                </div>*@
+                                <div class="col-xl-6">
+                                    <div class="percent-chart"> <canvas id="stachholder_doughnut_chart" width="800" height="900"></canvas>
+                                        @*<canvas id="percent-chart"></canvas>*@
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- USER DATA-->
+            <div class="user-data m-b-30">
+                <h3 class="title-3 m-b-30">
+                    <i class="zmdi zmdi-account-calendar"></i>Subscriber Meter Info
+                </h3>
+                <div class="filters m-b-45">
+                    <div class="rs-select2--dark rs-select2--md m-r-10 rs-select2--border">
+                        <select class="js-select2" name="property">
+                            <option selected="selected">All </option>
+                            <option value="">Monthly Usage</option>
+                            <option value="">Amount Pay</option>
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                    <div class="rs-select2--dark rs-select2--sm rs-select2--border">
+                        <select class="js-select2 au-select-dark" name="time">
+                            <option selected="selected">All Time</option>
+                            <option value="">By Month</option>
+                        </select>
+                        <div class="dropDownSelect2"></div>
+                    </div>
+                </div>
+                <div class="table-responsive table-data">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>
+                                    <label class="au-checkbox">
+                                        <input type="checkbox">
+                                        <span class="au-checkmark"></span>
+                                    </label>
+                                </td>
+                                <td>BILLINGS  ID</td>
+                                <td>SUBSCRIBER ID</td>
+                                <td>MONTHLY USAGE DURATION (Hr)</td>
+                                <td>TOTAL ENERGY CONSUMED FOR 30DAYS</td>
+                                <td>AMOUNT TO PAY (₦)</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        @foreach (var models in Model.billingsRealData)
+                        {
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="au-checkbox">
+                                            <input type="checkbox">
+                                            <span class="au-checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>
+                                        <div class="table-data__info">
+                                            <h6>@models.Billings_Id </h6>
+
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <span>SMtBV5jXX-@models.SUBSCRIBER_ID</span>
+                                    </td>
+                                    <td>
+                                        @models.EnergyConsumedFor30Days
+                                    </td>
+                                    <td>
+                                        <span>@models.USAGE_DURATION</span>
+                                    </td>
+                                    <td>
+                                        @Decimal.Round(models.AmountToPay, MidpointRounding.AwayFromZero)
+                                    </td>
+                                    <td>
+                                        <span class="more">
+                                            <i class="zmdi zmdi-more"></i>
+                                        </span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        }
+                    </table>
+                </div>
+                <div class="user-data__footer">
+                    <button href="/Subscribers/Meterusage" class="au-btn au-btn-load">load more</button>
+                </div>
+            </div>
+            <!-- END USER DATA-->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="copyright">
+                        <p>Copyright © @DateTime.Now.Year SmartMeterApp. All rights reserved. Template by <a href="">SmartMeterApp</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        const xs = []; const ys = []
+        const api_url = "/api/subscriber";
+        async function getdata() {
+            const response = await fetch(api_url)
+            const data = await response.json();
+            data.forEach((i) => {
+                xs.push(i.billingMonth);
+                ys.push(i.energyConsumedFor30Days);
+            });
+            console.log(xs, ys);
+            return { xs, ys };
+        }
+
+    </script>
+    <script>
+        async function DisplaySubscriberChart() {
+            const data = await getdata();
+            const mychart = new Chart(document.getElementById("subscriber_bar-chart"), {
+                type: 'bar',
+                data: {
+                    labels: data.xs,
+                    datasets: [
+                        {
+                            label: "Population (millions)",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                            data: data.ys
+                        }
+                    ]
+                },
+                options: {
+                    legend: { display: false },
+                    title: {
+                        display: true,
+                        text: 'subscriber consumption for the pass 3 month'
+                    }
+                }
+            });
+        }
+        DisplaySubscriberChart();
+    </script>
+
+@*}
+@section Scripts {*@
+   
+    <script>
+        const xss = []; const yss = []
+        const api_urls = "/api/subscriber";
+        async function getstackholderdata() {
+            const response = await fetch(api_urls)
+            const datastack = await response.json();
+            datastack.forEach((i) => {
+                xss.push(i.billingMonth);
+                yss.push(i.energyConsumedFor30Days);
+            });
+            console.log(xss, yss);
+            return { xss, yss };
+        }
+
+        async function DisplayStacholderChart() {
+            const datastacks = await getstackholderdata();
+            new Chart(document.getElementById("stachholder_doughnut_chart"), {
+                type: 'doughnut',
+                data: {
+                    labels: datastacks.xss,
+                    datasets: [
+                        {
+                            label: "stackholder",
+                            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+                            data: datastacks.yss
+                        }
+                    ]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: 'subscriber chart'
+                    }
+                }
+            });
+        }
+
+        DisplayStacholderChart();
+    </script>
+}<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>

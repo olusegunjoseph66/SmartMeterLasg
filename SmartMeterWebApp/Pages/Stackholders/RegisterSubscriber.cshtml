@@ -1,0 +1,146 @@
+﻿@page "{id:min(1)?}/{handler?}"
+@model SmartMeterWebApp.Pages.Stackholders.RegisterSubscriberModel
+@{
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    //Layout = "~/Pages/Shared/_Layout.cshtml";
+    //Layout = null;
+    ViewData["Title"] = "RegisterSubscriber";
+}
+
+<h1>Register Subscriber</h1>
+
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Register Subscriber</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                <div class="card">
+                                    <div class="col-md-12 col-md-offset-2">
+
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.First_Name" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.First_Name" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.First_Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Last_Name" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.Last_Name" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.Last_Name" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Phone" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.Phone" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.Phone" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Gender" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <select asp-for="@Model.subscribInfo.Gender" asp-items="@Model.Genders" class="form-control"></select>
+
+                                                @*<input asp-for="@Model.Gender" class="form-control" />*@
+                                                <span asp-validation-for="@Model.subscribInfo.Gender" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Dofb" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.Dofb" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.Dofb" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Email" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.Email" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.Email" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Address" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.Address" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.Address" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.State" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.State" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.State" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.subscribInfo.Country" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <input asp-for="@Model.subscribInfo.Country" class="form-control" />
+                                                <span asp-validation-for="@Model.subscribInfo.Country" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2 col-md-offset-2">
+                                            <div class="form-group">
+                                                <input type="submit" value="Comfirm" class="btn btn-primary" />
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                            @*@section Scripts {
+                                @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }          }*@
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

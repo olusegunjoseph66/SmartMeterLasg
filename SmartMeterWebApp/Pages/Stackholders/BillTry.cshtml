@@ -1,0 +1,224 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Stackholders.BillTryModel
+@{
+    Layout = null;
+    //Layout = "~/Pages/Stackholders/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Billings</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="~/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/js/jquery-3.3.1.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+
+    <link href="~/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <script src="~/js/jquery.dataTables.js"></script>
+    <script src="~/js/dataTables.bootstrap4.min.js"></script>
+    
+    
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#DataTable').DataTable();
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $(".chkCheckBoxId").prop("checked", true)
+                }
+                else {
+                    $(".chkCheckBoxId").prop("checked", false)
+                }
+            });  
+            //$('#checkAll').click(function () {
+            //    if ($(this).is(":checked")) {
+            //        $(".checkBox").prop("checked", true)
+            //    }
+            //    else {
+            //        $(".checkBox").prop("checked", false)
+            //    }
+            //});
+
+
+
+            //$("#create").click(function () {
+
+               
+            //    var selectedIDs = new Array();
+            //    $('input:checkbox.checkBox').each(function () {
+            //        if ($(this).prop('checked')) {
+            //            selectedIDs.push($(this).val());
+            //        }
+            //    });
+
+             
+            //        //var obj = {};
+            //        //obj.status = 1;
+            //        var jsondata = JSON.stringify(selectedIDs);
+            //        $.ajax({
+            //            type: "POST",
+            //            url: "/BillTry/OnPost",
+            //            data: jsondata,
+            //            contentType: "application/json; charset UTF-8",
+            //            dataType: "json",
+            //            success: function (response) {
+            //                document.getElementById("txtmacadd").innerHTML = String(response.d);
+            //            },
+
+
+
+            //        });
+
+
+                //var options = {};
+                //options.url = "/BillTry/OnPost";
+                //options.type = "POST";
+                //options.data = JSON.stringify(selectedIDs);
+                //options.contentType = "application/json";
+                //options.dataType = "json";
+                //options.success = function (msg) {
+                //    alert(msg);
+                //};
+                //options.error = function () {
+                //    alert("Error while creating the records!");
+                //};
+                //$.ajax(options);
+
+            //});
+        });
+    </script>
+</head>
+<body>
+
+    <h2>Billing  List</h2>
+
+    <div>
+        @*<a asp-area="" asp-page="/Stackholders/EditDevice" data-toggle="tooltip" title="" class="btn btn-primary"
+           data-original-title="Add New Devices "><i class="fa fa-plus"></i>&nbsp;New Billings</a>*@
+
+        @*<form method="get">
+            <div class="input-group">
+                <input class="form-control" placeholder="Device Id" asp-for="SearchTerm">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i>Search</button>
+                </div>
+            </div>
+        </form>*@
+        <form method="get">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="control-label" for="subscriberId">Device Id</label>
+                </div>
+                <div class="col-md-8">
+                    <div class="form-group">
+                        <input name="SearchTerm" value="" placeholder="Device Id" asp-for="@Model.SearchTerm" class="form-control" type="text"><ul class="dropdown-menu"></ul>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" id="button-filter" class="btn btn-primary">
+                        <i class="fa fa-search"></i> Search
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br /><br />
+              <form method="post">
+                  <div class="row">
+                      <div class="col-md-2">
+                          <label asp-for="@Model.StartDate"></label>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              <input asp-for="@Model.StartDate" />
+                          </div>
+                      </div>
+
+
+                      <div class="col-md-2">
+                          <label asp-for="@Model.EndDate"></label>
+                      </div>
+                      <div class="col-md-3">
+                          <div class="form-group">
+                              <input asp-for="@Model.EndDate" />
+                          </div>
+                      </div>
+                      @*<div class="col-md-2">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-search"></i> Search
+                </button>
+            </div>*@
+                  </div>
+                  <a asp-page="/Stackholders/Dashboard" asp-route-Device_ID="@Model.Device_ID" class="btn btn-secondary rounded-0">Back</a>
+                  <br /><br />
+                  @*<div class="col-md-2">
+            <label asp-for="@Model.BillingMonth"></label>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <select asp-for="@Model.BillingMonth" value="@Model.BillingMonth" asp-items="@Model.BillingMonth" class="form-control"></select>
+            </div>
+        </div>*@
+                  <button type="submit" id="create" value="Create" class="btn btn-sm btn-primary rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-plus"></i> Create Billing</button>
+                  <br /><br />
+                 
+
+                  @if ( (Model.AllSmartMetersRealInfo.ToList()?.Count > 0))
+                  {
+                      <div class="table-responsive">
+                          <table id="DataTable" style="width:100%;" class="table table-bordered table-hover">
+                              <thead>
+                                  <tr>
+                                      <th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" @*id="checkAll"class="checkBox"*@ /></th>
+                                      @*<th><strong>BILLINGS  ID</strong></th>*@
+
+                                      <th><strong>DEVICE ID</strong></th>
+                                      <th><strong>ENERGY CONSUMEDkWh</strong></th>
+                                      <th><strong>VOLTAGE READING</strong></th>
+                                      <th><strong>POWER READING</strong></th>
+                                      <th><strong>CONNECTION STATUS</strong></th>
+                                      <th><strong>USAGE DATE OF TRANSACTION</strong></th>
+                                      @*<th><strong>ENDDATE OF TRANSACTION</strong></th>*@
+                                      <th> </th>
+                                  </tr>
+
+                              </thead>
+
+
+                              @foreach (var models in Model.AllSmartMetersRealInfo)
+                              {
+                                  <tbody>
+                                      <tr>
+                                          <td><input type="checkbox" name="DeviceId" value="@models.DeviceId" @*class="checkBox"*@ class="custom-checkbox chkCheckBoxId" /></td>
+                                          <td> <strong>@models.DeviceId </strong><br /> </td>
+
+                                          <td>@models.EnergyAmountkWh</td>
+                                          <td>@models.VoltageReading</td>
+                                          <td>@models.PowerReading</td>
+                                          <td>@models.ConnectionStatus</td>
+                                          <td>@models.EventProcessedUtcTime.ToString("dd:MMMM:yyyy")</td>
+                                          @*<td>@string.Format("{0:F}", models.EndDatetime)</td>*@
+
+                                          <td>
+                                              @*<a asp-page="/Stackholders/DeleteBilling" asp-route-Device_ID="@Model.Billings_ID" class="btn btn-danger">Delete Billings</a>
+                                    <a asp-page="/Stackholders/BillingDetail" asp-route-Device_ID="@Model.Billings_ID" class="btn btn-primary">View Details</a>*@
+
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              }
+                          </table>
+                      </div>
+
+
+
+                  }
+              </form>
+    </div>
+</body>
+</html>

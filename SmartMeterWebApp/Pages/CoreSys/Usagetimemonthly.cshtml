@@ -1,0 +1,101 @@
+﻿@page
+@model SmartMeterWebApp.Pages.CoreSys.UsagetimemonthlyModel
+@{
+    ViewData["Title"] = "Usagetimemonthly";
+    Layout = "~/Pages/CoreSys/Shared/_Layout1.cshtml";
+}
+
+<h2>Usage Time Monthly</h2>
+     <div>
+<form method="get">
+    <div class="row">
+        <div class="col-md-2">
+            <label class="control-label" for="subscriberId">Billings Id</label>
+        </div>
+        <div class="col-md-8">
+            <div class="form-group">
+                <input name="SearchTerm" value="" placeholder="Device Id" asp-for="@Model.SearchTerm" class="form-control" type="text"><ul class="dropdown-menu"></ul>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <button type="submit" id="button-filter" class="btn btn-primary">
+                <i class="fa fa-search"></i> Search
+            </button>
+        </div>
+    </div>
+</form>
+<br />
+<br />
+<form method="post">
+    <div class="row">
+        <div class="col-md-2">
+            <label asp-for="@Model.StartDate"></label>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input asp-for="@Model.StartDate" />
+            </div>
+        </div>
+
+
+        <div class="col-md-2">
+            <label asp-for="@Model.EndDate"></label>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <input asp-for="@Model.EndDate" />
+            </div>
+        </div>
+
+    </div>
+    <a asp-page="/Stackholders/Dashboard" asp-route-Device_ID="@Model.Billings_ID" class="btn btn-secondary rounded-0">Back</a>
+    <br /><br />
+
+    <br /><br />
+
+
+    @if ((Model.AllSmartMetersRealInfo.ToList()?.Count > 0))
+    {
+        <div class="table-responsive">
+            <table id="DataTable" style="width:100%;" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                        @*<th><strong>BILLINGS  ID</strong></th>*@
+
+                        <th><strong>DEVICE ID</strong></th>
+                        <th><strong>MONTHLY USAGE DURATION (Hr)</strong></th>
+                        <th><strong>CONNECTION STATUS</strong></th>
+                        <th><strong>USAGE DATE OF TRANSACTION</strong></th>
+                        @*<th><strong>ENDDATE OF TRANSACTION</strong></th>*@
+                        <th> </th>
+                    </tr>
+
+                </thead>
+
+
+                @foreach (var models in Model.AllSmartMetersRealInfo)
+                {
+                    <tbody>
+                        <tr>
+                            <td> <strong>@models.DeviceId </strong><br /> </td>
+
+                            <td>@models.USAGE_DURATION</td>
+                            <td>@models.ConnectionStatus</td>
+                            <td>@string.Format("{0:F}", models.EventProcessedUtcTime)</td>
+                            @*<td>@string.Format("{0:F}", models.EndDatetime)</td>*@
+
+                            <td>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+        </div>
+
+
+
+    }
+</form>
+
+    </div>
+

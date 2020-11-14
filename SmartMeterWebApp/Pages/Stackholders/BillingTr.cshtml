@@ -1,0 +1,178 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Stackholders.BillingTrModel
+@{
+    ViewData["Title"] = "BillingTr";
+    Layout = null;
+    //Layout = "~/Pages/Stackholders/Shared/_Layout1.cshtml";
+}
+
+<link href="~/css/bootstrap.min.css" rel="stylesheet" />
+<script src="~/js/jquery-1.10.2.js"></script>
+<script src="~/js/bootstrap.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        BindSelectAll();
+
+        $(document).ajaxStart(function () {
+            $("#loading").show();
+        });
+
+        $(document).ajaxStop(function () {
+            $("#loading").hide();
+        });
+
+        $("#Approve").click(function () {
+            checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+            $.ajax({
+                type: "POST",
+                @*url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",*@
+                url:"/BillingTr/ApproveOrRejectAll",
+                traditional: true,
+                data: { Ids: checkedIds.toArray(), Status: "A", CurrentStatus: "@ViewBag.Status" },
+                success: successFunc,
+                error: errorFunc
+            });
+
+            function successFunc(data, status) {
+                $("#Data").html(data);
+                BindSelectAll();
+            }
+
+            function errorFunc() {
+                alert('error');
+            }
+
+        });
+
+        $("#Reject").click(function () {
+            checkedIds = $(".ckb").filter(":checked").map(function () { return this.id; });
+            $.ajax({
+                type: "POST",
+                url: "@Url.Action("ApproveOrRejectAll","ApproveURLs")",
+                traditional: true,
+            data:{ Ids:checkedIds.toArray(),Status:"R",CurrentStatus:"@ViewBag.Status"},
+            success: successFunc,
+            error: errorFunc
+        });
+
+            function successFunc(data, status) {
+                $("#Data").html(data);
+                BindSelectAll();
+        }
+
+        function errorFunc() {
+            alert('error');
+        }
+
+    });
+    });
+
+
+    function BindSelectAll()
+    {
+        $("#selectall").click(function (event) {  //on click
+            if (this.checked) { // check select status
+                $('.ckb').each(function () { //loop through each checkbox
+                    this.checked = true;  //select all checkboxes with class "checkbox1"
+                });
+            } else {
+                $('.ckb').each(function () { //loop through each checkbox
+                    this.checked = false; //deselect all checkboxes with class "checkbox1"
+                });
+            }
+        });
+    }
+
+    function ConfirmApprove() {
+        return confirm('Are you sure you want to Create Payments?');
+    }
+    function ConfirmReject() {
+        return confirm('Are you sure you want to Reject?');
+    }
+</script>
+
+<h2>Create Billings</h2>
+
+<div id="loading" class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Loading...</h4>
+            </div>
+            <div class="modal-body">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" style="width:100%"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<button type="submit" id="Approve" value="Approve" class="btn btn-sm btn-primary rounded-0" onclick="return confirm('Are you sure?')"><i class="fa fa-plus"></i> Create Billing</button>
+<br />
+<br />
+@*<div id="Data">
+    <partial name="pv_BillingPay" model="Model" view-data="ViewData" />
+</div>*@
+@if (Model.AllSmartMetersRealInfo.ToList()?.Count > 0)
+{
+
+    <div id="Data" class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped table-hover">
+            <thead>
+                <tr>
+                    <th>@Html.CheckBox("selectall")</th>
+                    @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+                    @*<th><strong>BILLINGS  ID</strong></th>*@  @*id="checkAll"class="checkBox"*@
+
+                    <th><strong>DEVICE ID</strong></th>
+                    <th><strong>ENERGY CONSUMEDkWh</strong></th>
+                    <th><strong>VOLTAGE READING</strong></th>
+                    <th><strong>POWER READING</strong></th>
+                    <th><strong>CONNECTION STATUS</strong></th>
+                    <th><strong>USAGE DATE OF TRANSACTION</strong></th>
+                    @*<th><strong>ENDDATE OF TRANSACTION</strong></th>*@
+                    <th> </th>
+                </tr>
+
+            </thead>
+
+
+            @foreach (var models in Model.AllSmartMetersRealInfo)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            @Html.CheckBox(models.DeviceId.ToString(), false, new { @class = "ckb", Id = models.DeviceId })
+                        </td>
+
+                        @*<td><input type="checkbox" name="DeviceId" value="@models.DeviceId" class="custom-checkbox chkCheckBoxId" /></td>*@
+                        @*class="checkBox"*@
+
+                        <td> <strong>@models.DeviceId </strong><br /> </td>
+                        <td>@models.EnergyAmountkWh</td>
+                        <td>@models.VoltageReading</td>
+                        <td>@models.PowerReading</td>
+                        <td>@models.ConnectionStatus</td>
+                        <td>@string.Format("{0:F}", models.StartDatetime)</td>
+                        @*<td>@string.Format("{0:F}", models.EndDatetime)</td>*@
+
+                        <td>
+                            @*<a asp-page="/Stackholders/DeleteBilling" asp-route-Device_ID="@Model.Billings_ID" class="btn btn-danger">Delete Billings</a>
+                                <a asp-page="/Stackholders/BillingDetail" asp-route-Device_ID="@Model.Billings_ID" class="btn btn-primary">View Details</a>*@
+
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+    </div>
+
+
+
+}
+

@@ -1,0 +1,72 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Stackholders.ViewIOTDEviceDetailsModel
+@{
+    ViewData["Title"] = "ViewIOTDEviceDetails";
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+}
+
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <h2>View IOTDeviceDetails</h2>
+        <div>
+            <a asp-area="" asp-page="/Stackholders/EditIOTDEviceDetails" data-toggle="tooltip" title="" class="btn btn-primary"
+               data-original-title="Configure New IOTdevice "><i class="fa fa-plus"></i>&nbsp;New DeviceConfiq</a>
+
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+
+
+                        @if (Model.AllIOTDEviceDetail.ToList()?.Count > 0)
+                        {
+                            <div class="table-responsive table--no-card m-b-30">
+                                <table class="table table-borderless table-hover table-striped table-earning">
+
+                                    <thead>
+                                        <tr>
+                                            <th><strong> ID</strong></th>
+                                            <th><strong>SUBSCRIBER ID</strong></th>
+                                            <th><strong>STAKEHOLDER ID</strong></th>
+                                            <th><strong>SCOPE ID</strong></th>
+                                            <th><strong>IOTDEVICE ID</strong></th>
+                                            <th><strong>KEY</strong></th>
+
+                                            <th> </th>
+                                        </tr>
+
+                                    </thead>
+
+
+                                    @foreach (var models in Model.AllIOTDEviceDetail)
+                                    {
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <strong>@models.IOTDEviceDetail_Id </strong><br />
+
+                                                </td>
+                                                <td>@models.Subscriber_ID</td>
+                                                <td>@models.STAKEHOLDER_ID</td>
+                                                <td>@models.ScopeID</td>
+                                                <td>@models.IOTDEviceId</td>
+                                                <td>@models.PrimaryKey</td>
+
+                                                <td>
+                                                    <a asp-page="/Stackholders/EditIOTDEviceDetails" asp-route-Tarrif_ID="@models.IOTDEviceDetail_Id" class="btn btn-primary">Edit</a>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+
+                                    }
+                                </table>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

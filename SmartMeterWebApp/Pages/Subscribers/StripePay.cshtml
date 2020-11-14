@@ -1,0 +1,32 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Subscribers.StripePayModel
+@{
+    Layout = "~/Pages/Subscribers/Shared/_LayoutB.cshtml";
+}
+
+
+<br />
+<br />
+
+<br />
+<br />
+
+
+<div class="col-md-6">
+    <a class="btn btn-primary btn-product"><span class="glyphicon glyphicon-thumbs-up"></span> Like</a>
+</div>
+<div class="col-md-6">
+    <form action="" method="POST">
+        <script src="https://checkout.stripe.com/checkout.js" 
+                class="stripe-button"
+                data-key="@Model.StripePublishableKey"
+                data-amount="@Model.payInfo.AmountToPay"
+                data-email="@HttpContext.User.Identity.Name "
+                data-name="@Model.payInfo.First_Name "
+                data-currency="NGN"
+                data-description='SmartMeter Subscriber Payment'
+                data-image="/images/main-book.png">
+        </script>
+    </form>
+</div>
+@*</div>*@

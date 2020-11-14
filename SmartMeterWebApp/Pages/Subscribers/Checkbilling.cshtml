@@ -1,0 +1,93 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Subscribers.CheckbillingModel
+@{
+    ViewData["Title"] = "Checkbilling";
+    Layout = "~/Pages/Subscribers/Shared/_LayoutB.cshtml";
+    var billinginfo = TempData["biilinginfo"];
+}
+
+<!-- MAIN CONTENT-->
+    <div class="main-content">
+        <div class="section__content section__content--p30">
+            <h2>Check Billing</h2>
+            <div>
+                <br />
+                <br />
+                @if ((string)billinginfo == "true")
+                {
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <h1>You have paid for this month</h1>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <br />
+                    <br />
+
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-lg-12">
+
+                                <div class="clearfix"></div>
+                                <br />
+                                <br />
+                                <br />
+                                <a asp-page="/subscribers/Paymentpage" asp-route-Subscriber_ID="@Model.billingInfo.SUBSCRIBER_ID" class="btn btn-primary">Make Payments</a>
+
+                                <table class="table table-borderless table-condensed table-hover table-striped table-earning">
+                                    <tr>
+                                        <td>STAKEHOLDER ID</td>
+                                        <td>@Model.billingInfo.STAKEHOLDER_ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>SUBSCRIBER ID</td>
+                                        <td>SMtBV5jXX-@Model.billingInfo.SUBSCRIBER_ID</td>
+                                    </tr>
+                                    <tr>
+                                        <td>DEvice Id</td>
+                                        <td>@Model.billingInfo.DEviceId</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Device Name</td>
+                                        <td>@Model.billingInfo.Device_Name</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Meter Usage</td>
+                                        <td>@Model.billingInfo.EnergyConsumedFor30Days</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Amount To Be Paid</td>
+                                        <td>NGN @Model.billingInfo.AmountToPay.ToString("N")</td>
+                                        @*<td>NGN @Decimal.Round(Model.billingInfo.AmountToPay, MidpointRounding.AwayFromZero)</td>*@
+                                    </tr>
+
+                                    <tr>
+                                        <td>Total Usage For The Month (Hr)</td>
+                                        <td>@Model.billingInfo.USAGE_DURATION</td>
+
+                                    </tr>
+
+                                </table>
+
+                                <div class="clearfix"></div>
+                                <hr />
+
+                                <div class="clearfix"></div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div></div>
+
+        <div class="clearfix"></div>
+        <hr />

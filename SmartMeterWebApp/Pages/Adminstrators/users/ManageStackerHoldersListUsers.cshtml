@@ -1,0 +1,76 @@
+﻿@page
+
+
+@model SmartMeterWebApp.Pages.Adminstrators.ManageStackerHoldersListUsersModel
+@{
+}
+
+
+@{
+    ViewData["Title"] = "List Users";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+
+
+<div>
+    <a asp-page="/Adminstrators/CraeteStakeholderAccounts">Add New StackHolders</a>
+</div>
+
+<hr />
+<h3>All StackHolder Users</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                UserId
+            </th>
+            <th>
+                UserName
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Action
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Users.Any())
+        {
+
+
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Id)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        <form method="post">
+                            <a  asp-page="/Adminstrators/users/ManagesStackholderEditeUsers" asp-route-id="@item.Id" >Edit</a>
+                            <button onclick="return confirm('Are you sure you want to delete the element with id: '+@item.Id)" asp-page-handler="DeleteUser" asp-route-id="@item.Id" class="btn btn-default">delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@if (!Model.Users.Any())
+{
+    <div>
+        <p align="center"><bold>No Users Created Yet</bold></p>
+        <a asp-page="/Adminstrators/CraeteStakeholderAccounts">Add New StackHolders</a>
+    </div>
+ }
+

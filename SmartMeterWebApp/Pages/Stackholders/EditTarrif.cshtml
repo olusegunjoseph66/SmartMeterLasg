@@ -1,0 +1,75 @@
+﻿@page "{Tarrif_Id:min(1)?}/{handler?}"
+@model SmartMeterWebApp.Pages.Stackholders.EditTarrifModel
+@{
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    //Layout = "~/Pages/Stackholders/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Edit Tariff";
+    var pageHeader = Model.tarrifInfo.Tarrif_Id > 0 ? "Edit" : "Create";
+}
+
+<h1>Edit Device</h1>
+
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>Edit Device</strong>
+                        </div>
+                        <div class="card-body card-block">
+                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                <div class="card">
+                                    <div class="col-md-12 col-md-offset-2">
+
+
+                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                        <input asp-for="@Model.tarrifInfo.Tarrif_Id" value="@Model.tarrifInfo.Tarrif_Id" type="hidden" />
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.tarrifInfo.STAKEHOLDER_ID" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.tarrifInfo.STAKEHOLDER_ID" value="@Model.tarrifInfo.STAKEHOLDER_ID" class="form-control" />
+                                                <span asp-validation-for="@Model.tarrifInfo.STAKEHOLDER_ID" class="text-danger"></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.tarrifInfo.TarrifAmount" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <input asp-for="@Model.tarrifInfo.TarrifAmount" value="@Model.tarrifInfo.TarrifAmount" class="form-control" />
+                                                <span asp-validation-for="@Model.tarrifInfo.TarrifAmount" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-md-2">
+                                                <label asp-for="@Model.tarrifInfo.TypeOfHouse" class="control-label"></label>
+                                            </div>
+                                            <div class="col-md-5">
+
+                                                <input asp-for="@Model.tarrifInfo.TypeOfHouse" value="@Model.tarrifInfo.TypeOfHouse" class="form-control" />
+                                                <span asp-validation-for="@Model.tarrifInfo.TypeOfHouse" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group">
+                                            <input type="submit" value="Confirm" class="btn btn-primary" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

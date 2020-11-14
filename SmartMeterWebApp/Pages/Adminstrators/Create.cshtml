@@ -1,0 +1,95 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Adminstrators.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>DeviceInfoModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Subscriber_ID" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Subscriber_ID" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Subscriber_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.STAKEHOLDER_ID" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.STAKEHOLDER_ID" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.STAKEHOLDER_ID" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Imei_Number" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Imei_Number" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Imei_Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Device_Name" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Device_Name" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Device_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Address" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Address" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Bus_Stop" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Bus_Stop" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Bus_Stop" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.State" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.State" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Lga" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Lga" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Lga" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Verify_Address" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Verify_Address" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Verify_Address" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Delivery_Flag" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Delivery_Flag" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Delivery_Flag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Flag_Operation" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Flag_Operation" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Flag_Operation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Country" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Country" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceInfoModel.Transaction_Date" class="control-label"></label>
+                <input asp-for="DeviceInfoModel.Transaction_Date" class="form-control" />
+                <span asp-validation-for="DeviceInfoModel.Transaction_Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

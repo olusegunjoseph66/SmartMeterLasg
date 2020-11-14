@@ -1,0 +1,133 @@
+﻿@page
+@model SmartMeterWebApp.Pages.Stackholders.SubscribersModel
+@{
+    Layout = "~/Pages/Stackholders/Shared/_LayoutA.cshtml";
+    //Layout = "~/Pages/Stackholders/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Subscribers";
+}
+
+<h1>Subscribers</h1>
+
+<h4>@Model.AllSubscribers.Count()</h4>
+
+
+<!-- MAIN CONTENT-->
+<div class="main-content">
+    <div class="section__content section__content--p30">
+        <a asp-area="" asp-page="/Stackholders/RegisterSubscriber" data-toggle="tooltip" title="" class="btn btn-primary"
+           data-original-title="Add New Subscriber"><i class="fa fa-plus"></i>&nbsp;New Subscriber</a>
+
+        <p>Lists Of Registered Subscribers</p>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+
+
+                    <form method="get">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label class="control-label" for="subscriberId">Subscribers Id</label>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <input name="SearchTerm" value="" placeholder="Subscribers Id" asp-for="@Model.SearchTerm" class="form-control" type="text"><ul class="dropdown-menu"></ul>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" id="button-filter" class="btn btn-primary">
+                                    <i class="fa fa-search"></i> Search
+                                </button>
+                            </div>
+                        </div>
+                        <br /><br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label asp-for="@Model.StartDate"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input asp-for="@Model.StartDate" />
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-2">
+                                <label asp-for="@Model.EndDate"></label>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <input asp-for="@Model.EndDate" />
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fa fa-search"></i> Search
+                                </button>
+                            </div>
+                        </div><br /><br />
+
+
+                    </form>
+                    @if (Model.AllSubscribers.ToList()?.Count > 0)
+                    {
+                        <div class="table-responsive table--no-card m-b-30">
+                            <table class="table table-borderless table-hover table-striped table-earning">
+
+                                <thead>
+                                    <tr>
+                                        <th><strong>ID</strong></th>
+                                        <th><strong>Stackholder ID</strong></th>
+                                        <th><strong>FIRST NAME</strong></th>
+                                        <th><strong>LAST NAME</strong></th>
+                                        <th><strong>PHONE</strong></th>
+                                        <th><strong>GENDER</strong></th>
+                                        <th><strong>DATE OF BIRTH</strong></th>
+                                        <th><strong>EMAIL</strong></th>
+                                        <th><strong>ADDRESS</strong></th>
+                                        <th><strong>STATE</strong></th>
+                                        <th><strong>COUNTRY</strong></th>
+                                        <th><strong>Date_Registered</strong></th>
+                                        <th> </th>
+                                    </tr>
+
+                                </thead>
+
+
+                                @foreach (var models in Model.AllSubscribers)
+                                {
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <strong>@models.Subscriber_ID </strong><br />
+
+                                            </td>
+                                            <td>@models.STAKEHOLDER_ID</td>
+                                            <td>@models.First_Name</td>
+                                            <td>@models.Last_Name</td>
+                                            <td>@models.Phone</td>
+                                            <td>@models.Gender</td>
+                                            <td>@string.Format("{0:F}", models.Dofb)</td>
+                                            <td>@models.Email</td>
+                                            <td>@models.Address</td>
+                                            <td>@models.State</td>
+                                            <td>@models.Country</td>
+                                            <td>@models.Date_Of_Registration</td>
+                                            <td>
+                                                @*<a asp-page="/Stackholders/RegisterSubscriber" asp-route-roomtypeid="@models.STAKEHOLDER_ID"
+            asp-route-startdate="@Model.StartDate.ToShortDateString()"
+            asp-route-enddate="@Model.EndDate.ToShortDateString()" class="btn btn-primary">Edit</a>*@
+                                                <a asp-page="/Stackholders/RegisterSubscriber" asp-route-id="@models.Subscriber_ID" class="btn btn-primary">Edit </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                }
+                            </table>
+                        </div>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
